@@ -20,7 +20,7 @@ export default function Header() {
 
         <nav className="nav">
           <Link href="/products">Каталог</Link>
-          <Link href="/contacts">О нас</Link>
+          <Link href="/about">О нас</Link>
         </nav>
 
         <div className="actions">
