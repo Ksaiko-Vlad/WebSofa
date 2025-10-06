@@ -1,0 +1,32 @@
+'use client';
+
+import { useState } from 'react';
+import s from './LoginForm.module.css';
+
+export default function LoginForm() {
+  const [loading, setLoading] = useState(false);
+
+  async function onSubmit(e) {
+    e.preventDefault();
+    setLoading(true);
+    // TODO: fetch('/api/v1/auth/login', { ... })
+    setTimeout(() => setLoading(false), 600);
+  }
+
+  return (
+    <form className={s.form} onSubmit={onSubmit}>
+      <label className={s.field}>
+        <span className={s.label}>E-mail</span>
+        <input className={s.input} name="email" type="email" required />
+      </label>
+      <label className={s.field}>
+        <span className={s.label}>Пароль</span>
+        <input className={s.input} name="password" type="password" required />
+      </label>
+      <div className={s.actions}>
+        <button className="btn btn-primary" disabled={loading}> {loading ? 'Входим…' : 'Войти'} </button>
+        <a className="btn btn-ghost" href="/register">Создать аккаунт</a>
+      </div>
+    </form>
+  );
+}
