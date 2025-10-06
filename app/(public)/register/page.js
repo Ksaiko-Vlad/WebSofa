@@ -7,12 +7,11 @@ export const metadata = {
     openGraph: { url: '/register' },
   };
   
-  import RegisterForm from '@/components/forms/RegisterForm';
+  import RegisterForm from '@/components/forms/register/RegisterForm';
   
   export default function RegisterPage() {
     return (
       <section>
-        <h1 style={{fontSize: 28, fontWeight: 800, marginBottom: 12}}>Регистрация</h1>
         <RegisterForm />
       </section>
     );
