@@ -89,10 +89,11 @@
   .btn {
     display: inline-flex; align-items: center; justify-content: center;
     padding: 10px 14px; border-radius: 10px; text-decoration: none; font-weight: 600;
-    transition: .15s ease;
+    transition: .15s ease; 
   }
   
-  .btn-primary { background: var(--primary); color: var(--primary-contrast); }
+  .btn-primary { background: var(--primary); color: var(--primary-contrast); border-color: var(--primary);
+    border: 2px solid var(--border); border-color: #0a0a0a; }
   .btn-primary:hover { opacity: .9; }
   .btn-outline { border: 1px solid var(--border); }
   .btn-outline:hover { background: color-mix(in oklab, var(--fg) 6%, var(--bg)); }
@@ -100,14 +101,16 @@
   .btn-ghost:hover { background: color-mix(in oklab, var(--fg) 6%, var(--bg)); }
   
   button.btn {
+    -webkit-appearance: none;
+    appearance: none;
     font-family: inherit;
-    font-size: 1rem;   /* 1rem = 16px, как у <a> по умолчанию */
+    font-size: 1rem;   
     line-height: 1;
-    font-weight: 600;  /* чтобы совпадало с .btn */
+    font-weight: 600;  
   }
 
   /* HERO / CARD */
-  .hero { display: grid; place-items: center; padding: 40px 0; }
+  .hero { display: grid; place-items: center; padding: 26px 0; }
   .card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); }
   
   .hero-card {

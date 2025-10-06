@@ -12,7 +12,6 @@ import LoginForm from '@/components/forms/login/LoginForm';
 export default function LoginPage() {
   return (
     <section>
-      <h1 style={{fontSize: 28, fontWeight: 800, marginBottom: 12, marginTop: 32}}>Вход</h1>
       <LoginForm />
     </section>
   );
