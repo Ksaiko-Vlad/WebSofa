@@ -4,5 +4,5 @@
 .field {display: grid; gap: 6px; }
 .label {font-size: 14px; color: var(--muted); margin-left: 6px; }
 .input {padding: 10px 12px; border: 1px solid var(--border); border-radius: 10px; background: var(--bg); color:var(--fg); } 
-.action {display: flex; gap: 10px; flex-wrap: wrap; }
+.action {display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; margin-top: 20; }
 .title {font-size: 28px; font-weight: 800; margin-bottom: 12px; text-align: center; }
