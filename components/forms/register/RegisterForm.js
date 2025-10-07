@@ -52,7 +52,7 @@ export default function RegisterForm() {
         </form>
       </div>
 
-      <div className={s.actions} style={{ marginTop: 16 }}>
+      <div className={s.actions} style={{marginTop: 16}} >
         <button className="btn btn-primary" style={{ marginRight: 16 }} disabled={loading} type="submit">
           {loading ? 'Регистрируем…' : 'Зарегистрироваться'}
         </button>
