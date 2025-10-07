@@ -21,7 +21,7 @@ export default function LoginForm() {
         <form className={s.form} onSubmit={onSubmit}>
           <label className={s.field}>
             <span className={s.label}>E-mail</span>
-            <input className={s.input} name="email" type="email" required />
+            <input className={s.input} name="email" type="email" required placeholder="you@example.com" />
           </label>
 
           <label className={s.field}>
@@ -31,7 +31,7 @@ export default function LoginForm() {
 
           <label className={s.field}>
             <span className={s.label}>Пароль</span>
-            <input className={s.input} name="password" type="password" required />
+            <input className={s.input} name="password" type="password" required placeholder="••••••••"/>
           </label>
 
         </form>
