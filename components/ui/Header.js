@@ -1,4 +1,7 @@
+'use client';
+
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import ThemeToggle from '@/components/ui/ThemeToggle';
 
 function CartIcon() {
@@ -12,7 +15,17 @@ function CartIcon() {
   );
 }
 
-export default function Header() {
+export default function HeaderClient({ session }) {
+  const router = useRouter();
+
+  async function logout() {
+    await fetch('/api/v1/auth/logout', { method: 'POST' });
+    router.replace('/');
+    router.refresh(); 
+  }
+
+  const isAuthed = !!session;
+
   return (
     <header className="header">
       <div className="container header-inner">
@@ -21,13 +34,19 @@ export default function Header() {
         <nav className="nav">
           <Link href="/products">Каталог</Link>
           <Link href="/about">О нас</Link>
+          {isAuthed && <Link href="/account">Кабинет</Link>}
         </nav>
 
         <div className="actions">
           <Link href="/cart" className="icon-btn" aria-label="Корзина">
             <CartIcon />
           </Link>
-          <Link href="/login" className="btn btn-outline">Войти</Link>
+
+          {isAuthed ? (
+            <button className="btn btn-outline" onClick={logout}>Выйти</button>
+          ) : (
+            <Link href="/login" className="btn btn-outline">Войти</Link>
+          )}
           <ThemeToggle />
         </div>
       </div>

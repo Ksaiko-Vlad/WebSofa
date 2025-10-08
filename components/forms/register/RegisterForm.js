@@ -2,15 +2,50 @@
 
 import { useState } from 'react';
 import s from './RegisterForm.module.css';
+import { useRouter } from 'next/navigation';
 
 export default function RegisterForm() {
   const [loading, setLoading] = useState(false);
+  const [error, setError]     = useState('');
+  const [ok, setOk]           = useState(false);
+  const router = useRouter();
 
   async function onSubmit(e) {
     e.preventDefault();
+    setError(''); setOk(false);
+    const fd = new FormData(e.currentTarget);
+    const payload = {
+      first_name: fd.get('first_name')?.toString(),
+      last_name: fd.get('last_name')?.toString(),
+      second_name: fd.get('second_name')?.toString(),
+      email: fd.get('email')?.toString(),
+      phone: fd.get('phone')?.toString(),
+      password: fd.get('password')?.toString(),  
+    };
+
+    if (!payload.email || !payload.password) {
+      setError('Введите email и пароль');
+      return;
+    }
+
     setLoading(true);
-    // TODO: fetch('/api/v1/auth/register', { ... })
-    setTimeout(() => setLoading(false), 600);
+
+    try {
+      const r = await fetch('/api/v1/auth/register', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const data = await r.json();
+      if (!r.ok) throw new Error(data?.message || 'Ошибка регистрации');
+      setOk(true);
+      router.push('/account');
+      router.refresh();
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -18,7 +53,7 @@ export default function RegisterForm() {
       <div className={s.card}>
         <h1 className={s.title}>Регистрация</h1>
 
-        <form className={s.form} onSubmit={onSubmit}>
+        <form className={s.form} id="regForm" onSubmit={onSubmit}>
           <label className={s.field}>
             <span className={s.label}>Имя</span>
             <input className={s.input} name="first_name" type="text" required placeholder="Иван" />
@@ -53,7 +88,7 @@ export default function RegisterForm() {
       </div>
 
       <div className={s.actions} style={{marginTop: 16}} >
-        <button className="btn btn-primary" style={{ marginRight: 16 }} disabled={loading} type="submit">
+        <button className="btn btn-primary" style={{ marginRight: 16 }} disabled={loading} form="regForm" type="submit">
           {loading ? 'Регистрируем…' : 'Зарегистрироваться'}
         </button>
         <a className="btn btn-ghost" href="/login">У меня уже есть аккаунт</a>

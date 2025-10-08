@@ -72,6 +72,8 @@ model users {
   created_at  DateTime @default(now())
   active      Boolean  @default(true)
 
+  password_hash String?
+
   // relations
   manager_links  shop_managers[]    @relation("UserShopManagers")
   orders_created orders[]           @relation("OrdersCreatedBy")

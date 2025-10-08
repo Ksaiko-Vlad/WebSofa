@@ -1,4 +1,4 @@
-import Header from '@/components/ui/Header';
+import Header from '@/components/HeaderServer';
 import Footer from '@/components/ui/Footer';
 
 export default function PublicLayout({ children }) {
