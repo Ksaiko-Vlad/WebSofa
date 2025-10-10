@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import PromoCard from '@/components/forms/home/PromoCard';
 
 export default function HomePage() {
   return (
@@ -26,6 +27,8 @@ export default function HomePage() {
           />
         </div>
       </div>
+      <PromoCard />
     </section>
+    
   );
 }
